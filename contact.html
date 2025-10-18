@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تواصل معانا - Mediava</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="images/logo - mediava.jpg?v=1">
+  <meta name="theme-color" content="#181818">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    /* أنماط عامة */
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    
+    /* الهيدر */
+    header {
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    header.header-solid { background: #111; box-shadow: 0 2px 15px rgba(0,0,0,0.3); }
+    
+    .logo {
+      width: 140px;
+      height: 40px;
+      background-image: url("images/logo - mediava.jpg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: right center;
+      text-indent: -9999px;
+      overflow: hidden;
+    }
+    
+    /* القائمة الرئيسية */
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+    
+    .main-nav a {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .main-nav a:not(.cta-btn):after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #FFD700;
+      bottom: 0;
+      right: 0;
+      transition: width 0.3s;
+    }
+    
+    .main-nav a:hover:not(.cta-btn):after {
+      width: 100%;
+      right: auto;
+      left: 0;
+    }
+    
+    .main-nav a.cta-btn {
+      background: #FFD700;
+      color: #111;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+    
+    .main-nav a.cta-btn:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    }
+    
+    /* قسم التواصل البطولي */
+    .contact-hero {
+      padding: 80px 20px;
+      text-align: center;
+    }
+    
+    .contact-hero-container {
+      max-width: 700px;
+      margin: 0 auto 50px auto;
+      padding: 50px 30px;
+      background: linear-gradient(135deg, #181818 0%, #1f1f1f 100%);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid #333;
+    }
+    
+    .contact-hero-title {
+      color: #FFD700;
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    
+    .contact-hero-divider {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    
+    .contact-hero-divider hr {
+      width: 80px;
+      border: 3px solid #FFD700;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+    
+    .contact-hero-summary {
+      color: #FFD700;
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+    
+    /* قسم التواصل الرئيسي */
+    .contact-section-bg {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, #181818 100%);
+      border-radius: 20px;
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid #333;
+    }
+    
+    .contact-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    
+    /* نموذج التواصل */
+    .contact-form {
+      background: #222;
+      border-radius: 20px;
+      padding: 40px 30px;
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      border: 1px solid #444;
+    }
+    
+    .contact-form label {
+      display: block;
+      color: #FFD700;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      background: #181818;
+      color: #fff;
+      font-size: 1.1rem;
+      font-family: 'Cairo', sans-serif;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #FFD700;
+    }
+    
+    .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .contact-form button {
+      width: 100%;
+      background: linear-gradient(to right, #FFD700, #FFC000);
+      color: #111;
+      padding: 16px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+    
+    .contact-form button:hover {
+      background: linear-gradient(to right, #FFC000, #FFD700);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    }
+    
+    #formResult {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    /* معلومات التواصل */
+    .contact-info {
+      background: #222;
+      border-radius: 20px;
+      padding: 40px 30px;
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      border: 1px solid #444;
+    }
+    
+    .contact-info h3 {
+      color: #FFD700;
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      font-weight: 700;
+      text-align: right;
+    }
+    
+    .contact-info p {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .contact-info a {
+      color: #FFD700;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    
+    .icon-gold {
+      color: #FFD700;
+      font-size: 1.5rem;
+      min-width: 30px;
+      text-align: center;
+    }
+    
+    /* الفوتر */
+    footer {
+      background: #181818;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+      border-top: 1px solid #222;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px 25px;
+      margin-bottom: 25px;
+    }
+    
+    .footer-links a {
+      color: #FFD700;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0 5px;
+    }
+    
+    .footer-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #FFD700;
+      bottom: -5px;
+      right: 0;
+      transition: width 0.3s;
+    }
+    
+    .footer-links a:hover:after {
+      width: 100%;
+      right: auto;
+      left: 0;
+    }
+    
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+    
+    .footer-social a {
+      color: #fff;
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-social a:hover {
+      color: #FFD700;
+      transform: translateY(-3px);
+      background: rgba(255, 215, 0, 0.2);
+    }
+    
+    .copyright {
+      font-size: 0.95rem;
+      color: #aaa;
+      margin-top: 20px;
+    }
+    
+    /* القائمة الجانبية للجوال */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1003;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 40px;
+      height: 30px;
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #FFD700;
+      transition: all 0.3s ease;
+      border-radius: 3px;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(11px) rotate(45deg);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-11px) rotate(-45deg);
+    }
+    
+    /* ====== تنسيقات موحدة للقائمة المتحركة ====== */
+    
+    /* Mobile Navigation Container */
+    .mobile-nav-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      pointer-events: none;
+    }
+    
+    /* Mobile Navigation Overlay */
+    .mobile-nav-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    /* Mobile Navigation Menu */
+    .mobile-nav {
+      position: absolute;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 350px;
+      height: 100%;
+      background: linear-gradient(135deg, #181818 0%, #111 100%);
+      box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+      padding: 80px 0 30px;
+      transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow-y: auto;
+      border-left: 3px solid #FFD700;
+      pointer-events: auto;
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    /* Scrollbar Styling */
+    .mobile-nav::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .mobile-nav::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+    
+    .mobile-nav::-webkit-scrollbar-thumb {
+      background: #FFD700;
+      border-radius: 3px;
+    }
+    
+    .mobile-nav::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+    
+    /* Mobile Navigation Links */
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #fff;
+      text-decoration: none;
+      padding: 18px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+    
+    .mobile-nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .mobile-nav a:hover::before {
+      left: 100%;
+    }
+    
+    .mobile-nav a:hover {
+      background: rgba(255, 215, 0, 0.1);
+      color: #FFD700;
+      padding-right: 35px;
+      transform: translateX(5px);
+    }
+    
+    /* Mobile Navigation Icons */
+    .mobile-nav a i {
+      width: 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav a:hover i {
+      opacity: 1;
+      transform: scale(1.1);
+      color: #FFD700;
+    }
+    
+    /* CTA Button in Mobile Navigation */
+    .mobile-nav a.cta-btn {
+      background: #FFD700;
+      color: #111;
+      margin: 20px 30px;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: bold;
+      border: none;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+      padding: 18px 25px;
+    }
+    
+    .mobile-nav a.cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .mobile-nav a.cta-btn:hover::before {
+      left: 100%;
+    }
+    
+    .mobile-nav a.cta-btn:hover {
+      background: #D4AF37;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    }
+    
+    .mobile-nav a.cta-btn i {
+      opacity: 1;
+      color: #111;
+    }
+    
+    .mobile-nav a.cta-btn:hover i {
+      color: #111;
+      transform: scale(1.1);
+    }
+    
+    /* Hamburger Menu Button */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1003;
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger:hover {
+      transform: scale(1.1);
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #FFD700;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .main-nav {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-nav {
+        width: 85%;
+        max-width: 320px;
+        padding: 80px 0 30px;
+      }
+      
+      .mobile-nav a {
+        font-size: 1.1rem;
+        padding: 18px 25px;
+      }
+      
+      .mobile-nav a.cta-btn {
+        margin: 20px 25px;
+        padding: 15px 25px;
+      }
+      
+      .hamburger span {
+        width: 28px;
+        height: 3px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .mobile-nav {
+        width: 90%;
+        max-width: 300px;
+        padding: 70px 0 25px;
+      }
+      
+      .mobile-nav a {
+        font-size: 1rem;
+        padding: 16px 20px;
+      }
+      
+      .mobile-nav a.cta-btn {
+        margin: 15px 20px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+      }
+      
+      .hamburger span {
+        width: 25px;
+        height: 2.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <div class="logo">Mediava</div>
+  <button class="hamburger" id="hamburger-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="main-nav">
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">عننا</a>
+    <a href="portfolio.html">أعمالنا</a>
+    <a href="testimonials.html">آراء العملاء</a>
+    <a href="blog.html">مدونة</a>
+    <a href="contact.html" class="cta-btn">احجز استشارة</a>
+  </nav>
+  <!-- القائمة الجانبية المحسنة -->
+  <div class="mobile-nav-container">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html">
+        <i class="fas fa-home"></i>
+        الرئيسية
+      </a>
+      <a href="about.html">
+        <i class="fas fa-info-circle"></i>
+        عننا
+      </a>
+      <a href="portfolio.html">
+        <i class="fas fa-briefcase"></i>
+        أعمالنا
+      </a>
+      <a href="testimonials.html">
+        <i class="fas fa-star"></i>
+        آراء العملاء
+      </a>
+      <a href="blog.html">
+        <i class="fas fa-blog"></i>
+        مدونة
+      </a>
+      <a href="contact.html" class="cta-btn">
+        <i class="fas fa-phone"></i>
+        احجز استشارة
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="contact-page">
+  <section class="contact-hero" data-aos="fade-up">
+    <div class="contact-hero-container">
+      <h1 class="contact-hero-title">تواصل معانا</h1>
+      <div class="contact-hero-divider"><hr></div>
+      <p class="contact-hero-summary">
+        لو عندك فكرة أو محتاج تبدأ حملة تسويق أو حتى عايز تستفسر عن خدمة، ابعتلنا واحنا هنرد عليك في أسرع وقت!
+      </p>
+    </div>
+  </section>
+  
+  <div class="contact-section-bg" data-aos="fade-up" data-aos-delay="200">
+    <section class="contact-section">
+      <form id="contactForm" class="contact-form" data-aos="zoom-in">
+        <label for="name">اسمك</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">ايميلك</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="phone">تليفونك</label>
+        <input type="tel" id="phone" name="phone">
+        
+        <label for="message">رسالتك</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        
+        <button type="submit">ابعت الرسالة</button>
+        <div id="formResult"></div>
+      </form>
+      
+      <div class="contact-info" data-aos="zoom-in" data-aos-delay="150">
+        <h3>بيانات التواصل</h3>
+        
+        <p>
+          <span class="icon-gold">📱</span>
+          واتساب: <a href="https://wa.me/201001599332">01001599332+</a>
+        </p>
+        
+        <p>
+          <span class="icon-gold">✉️</span>
+          ايميل: <a href="mailto:info@mediava.com">info@mediava.com</a>
+        </p>
+        
+        <p>
+          <span class="icon-gold">📍</span>
+          العنوان: القاهرة، مصر
+        </p>
+        
+        <p style="margin-top: 30px; color: #FFD700; font-weight: 600;">
+          ساعات العمل: من الأحد إلى الخميس<br>
+          من 9 صباحاً حتى 5 مساءً
+        </p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">عننا</a>
+    <a href="portfolio.html">أعمالنا</a>
+    <a href="testimonials.html">آراء العملاء</a>
+    <a href="blog.html">مدونة</a>
+    <a href="contact.html">تواصل معانا</a>
+  </div>
+  
+  <div class="footer-social">
+    <a href="https://www.facebook.com/Mediavamarketing" target="_blank" aria-label="فيسبوك">💬</a>
+    <a href="https://www.instagram.com/navomarketingagancy" target="_blank" aria-label="إنستجرام">📷</a>
+    <a href="https://www.linkedin.com/in/mediava-marketing-agancey-331761359/" target="_blank" aria-label="لينكدإن">🔗</a>
+  </div>
+  
+  <div class="copyright">
+    © 2025 Mediava - Marketing Agency. كل الحقوق محفوظة.
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true, easing: 'ease-in-out' });
+  document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger-menu');
+    const mobileNav = document.getElementById('mobile-nav');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const mobileNavContainer = document.querySelector('.mobile-nav-container');
+    const mobileLinks = document.querySelectorAll('.mobile-nav a');
+
+    function toggleMenu() {
+      const isOpen = mobileNav.classList.contains('active');
+      hamburger.setAttribute('aria-expanded', !isOpen);
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+      if (mobileNavContainer) mobileNavContainer.style.pointerEvents = isOpen ? 'none' : 'auto';
+      if (!isOpen) {
+        mobileLinks.forEach((link, index) => {
+          link.style.opacity = '0';
+          link.style.transform = 'translateX(-20px)';
+          link.style.transition = 'all 0.3s ease';
+          setTimeout(() => {
+            link.style.opacity = '1';
+            link.style.transform = 'translateX(0)';
+          }, 100 + (index * 50));
+        });
+      } else {
+        mobileLinks.forEach(link => {
+          link.style.opacity = '';
+          link.style.transform = '';
+          link.style.transition = '';
+        });
+      }
+    }
+
+    function closeMenu() {
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      if (mobileNavContainer) mobileNavContainer.style.pointerEvents = 'none';
+      mobileLinks.forEach(link => {
+        link.style.opacity = '';
+        link.style.transform = '';
+        link.style.transition = '';
+      });
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        const isCta = this.classList.contains('cta-btn');
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => { this.style.transform = ''; }, 150);
+        if (isCta) {
+          e.preventDefault();
+          closeMenu();
+          setTimeout(() => { window.location.href = href; }, 350);
+          return;
+        }
+        if (href && href.startsWith('#') && href.length > 1) {
+          e.preventDefault();
+          closeMenu();
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            setTimeout(() => {
+              window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+            }, 350);
+          }
+          return;
+        }
+        if (href === '#') { e.preventDefault(); closeMenu(); return; }
+        if ((href && href.startsWith('/')) || (href && href.endsWith('.html'))) {
+          closeMenu();
+          return;
+        }
+      });
+    });
+    function refreshHeaderSolid() {
+      const headerEl = document.getElementById('header');
+      if (window.scrollY > 10) headerEl.classList.add('header-solid');
+      else headerEl.classList.remove('header-solid');
+    }
+    refreshHeaderSolid();
+    window.addEventListener('scroll', refreshHeaderSolid);
+  });
+
+  // Form submission
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const resultDiv = document.getElementById('formResult');
+    
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'جاري الإرسال...';
+    
+    try {
+      // Simulate API call (replace with actual fetch)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      resultDiv.textContent = 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
+      resultDiv.style.color = '#4CAF50';
+      form.reset();
+    } catch (error) {
+      resultDiv.textContent = 'حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.';
+      resultDiv.style.color = '#F44336';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'ابعت الرسالة';
+      
+      // Hide message after 5 seconds
+      setTimeout(() => {
+        resultDiv.textContent = '';
+      }, 5000);
+    }
+  });
+</script>
+
+<style>
+  /* تحسينات شاملة للموبايل */
+  @media (max-width: 768px) {
+    /* تحسين الهيدر */
+    header {
+      padding: 15px 20px;
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    
+    .logo {
+      width: 120px;
+      height: 35px;
+    }
+    
+    /* إخفاء القائمة الرئيسية على الموبايل */
+    .main-nav {
+      display: none;
+    }
+    
+    /* إظهار زر القائمة */
+    .hamburger {
+      display: block;
+    }
+    
+    /* تحسين القائمة المتحركة */
+    .mobile-nav {
+      width: 85%;
+      max-width: 320px;
+      padding: 80px 25px 30px;
+      background: linear-gradient(135deg, #181818 0%, #111 100%);
+      border-left: 2px solid #FFD700;
+    }
+    
+    .mobile-nav a {
+      font-size: 1.1rem;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav a:hover {
+      background: rgba(255, 215, 0, 0.1);
+      padding-right: 15px;
+      border-radius: 8px;
+    }
+    
+    /* تحسين القسم الرئيسي */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+    
+    /* تحسين العناوين */
+    .section-title h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      font-size: 1rem;
+      line-height: 1.6;
+      padding: 0 20px;
+    }
+    
+    /* تحسين الأقسام */
+    .section {
+      padding: 60px 0;
+    }
+    
+    /* تحسين نموذج التواصل */
+    .contact-form {
+      padding: 30px 20px;
+      border-radius: 15px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 15px;
+      font-size: 1rem;
+      border-radius: 10px;
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 15px 25px;
+      font-size: 1.1rem;
+      border-radius: 25px;
+    }
+    
+    /* تحسين معلومات التواصل */
+    .contact-info {
+      grid-template-columns: 1fr;
+      gap: 25px;
+      padding: 0 20px;
+    }
+    
+    .contact-item {
+      padding: 25px 20px;
+      border-radius: 15px;
+      text-align: center;
+    }
+    
+    .contact-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .contact-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    
+    .contact-item p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    /* تحسين قسم CTA */
+    .cta {
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+    
+    .cta .btn {
+      width: 100%;
+      max-width: 280px;
+      padding: 15px 25px;
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* تحسينات إضافية للشاشات الصغيرة جداً */
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+    
+    .hero p {
+      font-size: 1rem;
+    }
+    
+    .section-title h2 {
+      font-size: 1.8rem;
+    }
+    
+    .section-title p {
+      font-size: 0.95rem;
+    }
+    
+    .contact-form {
+      padding: 25px 15px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 12px;
+      font-size: 0.95rem;
+    }
+    
+    .contact-item {
+      padding: 20px 15px;
+    }
+    
+    .contact-item h3 {
+      font-size: 1.2rem;
+    }
+    
+    .contact-item p {
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* تحسينات للشاشات المتوسطة */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+      padding: 0 30px;
+    }
+    
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+    
+    .contact-info {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+  }
+  
+  /* تحسينات للأجهزة اللوحية */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.15rem;
+    }
+    
+    .section-title h2 {
+      font-size: 2.2rem;
+    }
+    
+    .contact-info {
+      gap: 20px;
+      padding: 0 20px;
+    }
+  }
+  
+  /* تحسينات للعرض الأفقي على الموبايل */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+      padding: 60px 0 40px;
+    }
+    
+    .hero h1 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    
+    .hero p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    
+    .section {
+      padding: 40px 0;
+    }
+  }
+  
+  /* تحسينات للأداء على الموبايل */
+  @media (max-width: 768px) {
+    /* تحسين الحركات */
+    * {
+      transition: all 0.2s ease;
+    }
+    
+    /* تحسين التمرير */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* تحسين التفاعل */
+    .btn:hover,
+    .submit-btn:hover {
+      transform: translateY(-1px);
+    }
+    
+    /* تحسين الظلال */
+    .contact-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* تحسين النموذج */
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+  }
+</style>
+</body>
+</html>

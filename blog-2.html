@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ليه لازم يكون عندك موقع إلكتروني احترافي؟ - Mediava</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="images/logo - mediava.jpg?v=1">
+  <meta name="theme-color" content="#181818">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    .blog-article-container {max-width: 800px; margin: 40px auto; background: #181818; border-radius: 18px; box-shadow: 0 2px 16px #FFD70022; padding: 36px 22px; color: #fff;}
+    .blog-article-title {color: #FFD700; font-size: 2.1rem; margin-bottom: 12px; text-align: center;}
+    .blog-article-divider {width: 60px; border: 2px solid #FFD700; border-radius: 2px; opacity: 0.8; margin: 0 auto 24px auto;}
+    .blog-article-summary {color: #FFD700; font-size: 1.15rem; margin-bottom: 24px; text-align: center;}
+    .blog-article-content {font-size: 1.13rem; line-height: 2.1; margin-bottom: 32px;}
+    .back-btn {display: block; margin: 0 auto; background: #FFD700; color: #111; padding: 10px 28px; border-radius: 25px; font-weight: bold; font-size: 1.08rem; text-decoration: none; text-align: center; width: fit-content;}
+    .back-btn:hover {background: #fff; color: #FFD700;}
+    .logo {
+      width: 140px;
+      height: 40px;
+      background-image: url("images/logo - mediava.jpg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: right center;
+      text-indent: -9999px;
+      overflow: hidden;
+    }
+    /* ====== تنسيقات موحدة للقائمة المتحركة ====== */
+    
+    /* Mobile Navigation Container */
+    .mobile-nav-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      pointer-events: none;
+    }
+    
+    /* Mobile Navigation Overlay */
+    .mobile-nav-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    /* Mobile Navigation Menu */
+    .mobile-nav {
+      position: absolute;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 350px;
+      height: 100%;
+      background: linear-gradient(135deg, #181818 0%, #111 100%);
+      box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+      padding: 80px 0 30px;
+      transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow-y: auto;
+      border-left: 3px solid #FFD700;
+      pointer-events: auto;
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    /* Scrollbar Styling */
+    .mobile-nav::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .mobile-nav::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+    
+    .mobile-nav::-webkit-scrollbar-thumb {
+      background: #FFD700;
+      border-radius: 3px;
+    }
+    
+    .mobile-nav::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+    
+    /* Mobile Navigation Links */
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #fff;
+      text-decoration: none;
+      padding: 18px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+    
+    .mobile-nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .mobile-nav a:hover::before {
+      left: 100%;
+    }
+    
+    .mobile-nav a:hover {
+      background: rgba(255, 215, 0, 0.1);
+      color: #FFD700;
+      padding-right: 35px;
+      transform: translateX(5px);
+    }
+    
+    /* Mobile Navigation Icons */
+    .mobile-nav a i {
+      width: 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav a:hover i {
+      opacity: 1;
+      transform: scale(1.1);
+      color: #FFD700;
+    }
+    
+    /* CTA Button in Mobile Navigation */
+    .mobile-nav a.cta-btn {
+      background: #FFD700;
+      color: #111;
+      margin: 20px 30px;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: bold;
+      border: none;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+      padding: 18px 25px;
+    }
+    
+    .mobile-nav a.cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .mobile-nav a.cta-btn:hover::before {
+      left: 100%;
+    }
+    
+    .mobile-nav a.cta-btn:hover {
+      background: #D4AF37;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    }
+    
+    .mobile-nav a.cta-btn i {
+      opacity: 1;
+      color: #111;
+    }
+    
+    .mobile-nav a.cta-btn:hover i {
+      color: #111;
+      transform: scale(1.1);
+    }
+    
+    /* Hamburger Menu Button */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1003;
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger:hover {
+      transform: scale(1.1);
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #FFD700;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .main-nav {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-nav {
+        width: 85%;
+        max-width: 320px;
+        padding: 80px 0 30px;
+      }
+      
+      .mobile-nav a {
+        font-size: 1.1rem;
+        padding: 18px 25px;
+      }
+      
+      .mobile-nav a.cta-btn {
+        margin: 20px 25px;
+        padding: 15px 25px;
+      }
+      
+      .hamburger span {
+        width: 28px;
+        height: 3px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .mobile-nav {
+        width: 90%;
+        max-width: 300px;
+        padding: 70px 0 25px;
+      }
+      
+      .mobile-nav a {
+        font-size: 1rem;
+        padding: 16px 20px;
+      }
+      
+      .mobile-nav a.cta-btn {
+        margin: 15px 20px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+      }
+      
+      .hamburger span {
+        width: 25px;
+        height: 2.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="logo">Mediava</div>
+    <button class="hamburger" id="hamburger-menu" aria-label="القائمة" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+  <div class="mobile-nav-container">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html">
+        <i class="fas fa-home"></i>
+        الرئيسية
+      </a>
+      <a href="about.html">
+        <i class="fas fa-info-circle"></i>
+        عننا
+      </a>
+      <a href="portfolio.html">
+        <i class="fas fa-briefcase"></i>
+        أعمالنا
+      </a>
+      <a href="testimonials.html">
+        <i class="fas fa-star"></i>
+        آراء العملاء
+      </a>
+      <a href="blog.html">
+        <i class="fas fa-blog"></i>
+        مدونة
+      </a>
+      <a href="contact.html" class="cta-btn">
+        <i class="fas fa-phone"></i>
+        احجز استشارة
+      </a>
+    </div>
+  </div>
+  <main>
+    <div class="blog-article-container">
+      <h1 class="blog-article-title" data-aos="fade-up">ليه لازم يكون عندك موقع إلكتروني احترافي؟</h1>
+      <hr class="blog-article-divider" data-aos="fade-up" data-aos-delay="100">
+      <div class="blog-article-summary" data-aos="fade-up" data-aos-delay="200">الموقع هو واجهتك قدام عملاءك. اعرف إزاي موقع احترافي يفرق في مبيعاتك وثقة العملاء فيك.</div>
+      <div class="blog-article-content" data-aos="fade-up" data-aos-delay="300">
+        <b>1. المصداقية والثقة:</b> وجود موقع احترافي بيخلي شركتك تبدو أكبر وأكثر ثقة في نظر العملاء.<br><br>
+        <b>2. متواجد 24 ساعة:</b> موقعك شغال طول الوقت، أي حد يقدر يوصلك أو يعرف عنك في أي وقت.<br><br>
+        <b>3. زيادة المبيعات:</b> الموقع بيساعدك تعرض خدماتك أو منتجاتك وتستقبل طلبات أو استفسارات بسهولة.<br><br>
+        <b>4. التسويق الذكي:</b> تقدر تربط موقعك بالسوشيال ميديا والإعلانات وتتابع النتائج بدقة.<br><br>
+        <b>5. سهولة التواصل:</b> العملاء يقدروا يتواصلوا معاك بسهولة من خلال الموقع، سواء شات أو فورم أو حتى واتساب.
+      </div>
+      <a href="blog.html" class="back-btn">العودة لكل المقالات</a>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:1000,once:true});
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger-menu');
+      const mobileNav = document.getElementById('mobile-nav');
+      const overlay = document.getElementById('mobile-nav-overlay');
+      const mobileNavContainer = document.querySelector('.mobile-nav-container');
+      const mobileLinks = document.querySelectorAll('.mobile-nav a');
+
+      function closeMenu() {
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        if (mobileNavContainer) mobileNavContainer.style.pointerEvents = 'none';
+        mobileLinks.forEach(link => { link.style.opacity = ''; link.style.transform = ''; link.style.transition = ''; });
+      }
+
+      function toggleMenu() {
+        const isOpen = mobileNav.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', !isOpen);
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+        if (mobileNavContainer) mobileNavContainer.style.pointerEvents = isOpen ? 'none' : 'auto';
+        if (!isOpen) {
+          mobileLinks.forEach((link, index) => {
+            link.style.opacity = '0';
+            link.style.transform = 'translateX(-20px)';
+            link.style.transition = 'all 0.3s ease';
+            setTimeout(() => { link.style.opacity = '1'; link.style.transform = 'translateX(0)'; }, 100 + (index * 50));
+          });
+        } else {
+          mobileLinks.forEach(link => { link.style.opacity = ''; link.style.transform = ''; link.style.transition = ''; });
+        }
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', closeMenu);
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          const isCta = this.classList.contains('cta-btn');
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => { this.style.transform = ''; }, 150);
+          if (isCta) { e.preventDefault(); closeMenu(); setTimeout(() => { window.location.href = href; }, 350); return; }
+          if (href && href.startsWith('#') && href.length > 1) { e.preventDefault(); closeMenu(); const targetElement = document.querySelector(href); if (targetElement) { setTimeout(() => { window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' }); }, 350); } return; }
+          if (href === '#') { e.preventDefault(); closeMenu(); return; }
+          if ((href && href.startsWith('/')) || (href && href.endsWith('.html'))) { closeMenu(); return; }
+        });
+      });
+      function refreshHeaderSolid() {
+        const headerEl = document.getElementById('header');
+        if (window.scrollY > 10) headerEl.classList.add('header-solid');
+        else headerEl.classList.remove('header-solid');
+      }
+      refreshHeaderSolid();
+      window.addEventListener('scroll', refreshHeaderSolid);
+    });
+  </script>
+</body>
+</html> 
